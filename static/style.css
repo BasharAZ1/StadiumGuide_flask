@@ -1,0 +1,78 @@
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: rgba(200, 200, 200, 0.2); 
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: gray; /* Gray color for header */
+}
+
+/* User Action Styles */
+.user-actions button {
+    background-color: grey; /* Grey color for buttons */
+    color: white;
+    border-radius: 10px; /* Rounded corners for buttons */
+}
+
+.user-actions button:hover {
+    background-color: darkgrey; /* Dark grey on hover */
+}
+
+/* Stadium Section Styling */
+#stadiums {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.stadium {
+    padding:  5px;
+    flex-basis: calc(50% - 20px); /* Two stadiums per row */
+    border-radius: 15px; /* Rounded corners for each stadium frame */
+    overflow: hidden; /* Ensures image adheres to border radius */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Optional: Adds shadow for depth */
+    transition: transform 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.stadium img {
+    width: 700px;
+    height: 350px; /* Fixed height for all images */
+    object-fit: cover; /* Ensures the image covers the frame */
+    border-radius: 15px; /* Rounded corners for images */
+}
+
+.stadium:hover {
+    transform: scale(1.05); /* Slightly enlarges the stadium frame on hover */
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2); /* Optional: Enhances shadow on hover */
+}
+
+/* Add Stadium Button Styling */
+#add-stadium-button {
+    background-color: grey;
+    color: white;
+    border-radius: 10px;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+#add-stadium-button:hover {
+    background-color: darkgrey;
+}
+
+/* Footer Styling */
+footer {
+    background-color: gray; /* Gray color */
+    text-align: center;
+    padding: 1em 0;
+}
+
+footer p {
+    margin: 0;
+}

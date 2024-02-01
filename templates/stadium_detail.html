@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ stadium.stadium_name }}</title>
+    <link rel="stylesheet" href="../static/stad.css">
+    <style>
+    
+        .user-actions {
+            display: flex;
+            align-items: center;
+            position: absolute; /* Position it absolutely */
+            left: 40px; /* Distance from the right */
+            top: 10px; /* Distance from the top */
+            padding-top: 15px;
+            
+        }
+    
+        h1 {
+            color: black;
+            text-align: center;
+            flex-grow: 1; /* Allows the title to grow and take available space */
+            margin: 0 20px; /* Add margin on both sides */
+        }
+    
+        .user-actions button {
+            margin-right: 10px;
+            padding: 10px 15px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+    
+        .user-actions button:hover {
+            background-color: #0056b3;
+        }
+    
+        .user-actions span {
+            color: black;
+            font-weight: bold;
+            margin-right: 10px;
+            
+        }
+        .home-link {
+            position: absolute;
+            text-decoration: none; /* Removes underline from link */
+            color: black; /* Sets the text color */
+            padding: 10px; /* Adds padding around the text */
+            margin-left: 10px; /* Adds space to the left */
+            right:10px;
+        }
+        
+        .home-link:hover {
+            background-color: white; /* Changes color on hover */
+        }
+    </style>
+<body>
+    
+    <header>
+        <div class="user-actions">
+            
+            {% if not is_logged_in %}
+                <button onclick="window.location.href='/signin';">Sign In</button>
+                <button onclick="window.location.href='/signup';">Sign up</button>
+                <span id="user-name">Guest</span>
+            {% else %}
+                <span id="user-name">{{ session.username }}</span>
+                <button onclick="window.location.href='/logout';">Log out</button>
+            {% endif %}
+        </div>
+        <a href="/" class="home-link">Home</a>
+        <h1>{{ stadium.stadium_name }}</h1>
+  
+        
+    </header>
+
+    <main>
+        <div class="stadium-details">
+            <img src="{{ stadium.stadiumImage }}" alt="{{ stadium.stadium_name }}" class="stadium-image">
+            
+            <table>
+                <tr>
+                    <th>Location</th>
+                    <td>{{ stadium.location }}</td>
+                </tr>
+                <tr>
+                    <th>Capacity</th>
+                    <td>{{ stadium.capacity }}</td>
+                </tr>
+                <tr>
+                    <th>Owner</th>
+                    <td>{{ stadium.owner }}</td>
+                </tr>
+                <tr>
+                    <th>Year Built</th>
+                    <td>{{ stadium.yearBuilt }}</td>
+                </tr>
+                <tr>
+                    <th>Field Size</th>
+                    <td>{{ stadium.fieldSize }}</td>
+                </tr>
+            </table>
+
+            <div class="description">
+                <h3>Description</h3>
+                <p>{{ stadium.description }}</p>
+            </div>
+        </div>
+        <div class="reviews-display">
+        <h2>Stadium Reviews</h2>
+        <ul class="review-list">
+            {% for review in stadium.reviews %}
+                <li class="single-review">
+                    <div class="review-header">
+                        <p class="user-info">{{ review.user.username }}</p>
+                        <p class="rating">Rating: {{ review.rating }} / 5</p>
+                    </div>
+                    <div class="comment">
+                        <p>{{ review.comment }}</p>
+                    </div>
+                </li>
+            {% else %}
+                <p class="no-reviews">No reviews yet. Be the first to review!</p>
+            {% endfor %}
+        </ul>
+    </div>
+        <div class="review-section">
+            <h2>Add Your Review</h2>
+            <form action="/add_review" method="post">
+                <input type="hidden" name="username" value="{{ session.username }}">
+                <input type="hidden" name="stadium_id" value="{{ stadium.id }}">
+                <div class="star-rating">
+                    <input id="star5" name="rating" type="radio" value="5" class="star"/>
+                    <label for="star5" title="5 stars">☆</label>
+        
+                    <input id="star4" name="rating" type="radio" value="4" class="star"/>
+                    <label for="star4" title="4 stars">☆</label>
+        
+                    <input id="star3" name="rating" type="radio" value="3" class="star"/>
+                    <label for="star3" title="3 stars">☆</label>
+        
+                    <input id="star2" name="rating" type="radio" value="2" class="star"/>
+                    <label for="star2" title="2 stars">☆</label>
+        
+                    <input id="star1" name="rating" type="radio" value="1" class="star"/>
+                    <label for="star1" title="1 star">☆</label>
+                </div>
+        
+                <textarea name="comment" placeholder="Write your review here..." required></textarea>
+                <br>
+                <div class="button-container">
+                    <button type="submit">Submit Review</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>© Bashar, The Stadium Guide</p>
+    </footer>
+</body>
+</html>

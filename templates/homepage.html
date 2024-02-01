@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Stadium Guide</title>
+    <link rel="stylesheet" href="static/style.css">
+    <style>
+        header {
+            display: flex;
+            align-items: center;
+            padding: 1em 0;
+            justify-content: center /* Adjusted for spacing */
+        }
+        
+        .user-actions {
+            position: absolute;
+            left: 10px;
+        }
+        
+        .user-actions button {
+            margin-right: 10px;
+            padding: 10px 15px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .user-actions button:hover {
+            background-color: #0056b3;
+        }
+        
+        .user-actions span {
+            color: black;
+            font-weight: bold;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <header>
+        <div class="user-actions">
+            {% if not is_logged_in %}
+                <button onclick="window.location.href='/signin';">Sign In</button>
+                <button onclick="window.location.href='/signup';">Sign up</button>
+                <span id="user-name">Guest</span>
+            {% else %}
+                <span id="user-name">{{ session.username }}</span>
+                <button onclick="window.location.href='/logout';">Log out</button>
+            {% endif %}
+        </div>
+        <h1>The Stadium Guide</h1>
+    </header>
+
+    <main>
+        <section id="stadiums">
+            {% for stadium in stadiums %}
+            <div class="stadium">
+                <a href="/stadium/{{ stadium.id }}">
+                    <img src="{{ stadium.stadiumImage }}" alt="{{ stadium.stadium_name }}">
+                </a>
+                <h3>{{ stadium.stadium_name }}</h3>
+            </div>
+            {% endfor %}
+        </section>
+        {% if is_admin %}
+        <button id="add-stadium-button" onclick="window.location.href='add_stadium.html';">Add Stadium to Database</button>
+        {% endif %}
+    </main>
+</div>
+
+
+    <footer>
+        <p>© Bashar, The Stadium Guide</p>
+    </footer>
+</body>
+</html>
+
+
+

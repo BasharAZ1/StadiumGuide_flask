@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sign In</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='sign_up.css') }}">
+    <style>
+        /* Additional CSS for flash messages */
+        #flash-messages {
+            position: fixed; /* Fixed position */
+            bottom: 20px;    /* 20px from the bottom */
+            right: 20px;     /* 20px from the right */
+            background-color: rgba(255, 0, 0, 0.7); /* Semi-transparent red background */
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 1000; /* Make sure it appears above other elements */
+        }
+
+        .home-link {
+            position: absolute;
+            text-decoration: none; /* Removes underline from link */
+            color: black; /* Sets the text color */
+            padding: 10px; /* Adds padding around the text */
+            margin-left: 10px; /* Adds space to the left */
+            right:10px;
+        }
+        
+        .home-link:hover {
+            background-color: white; /* Changes color on hover */
+        }
+    </style>
+</head>
+    
+<body>
+    <header>
+        <div class="user-actions">
+        </div>
+        <a href="/" class="home-link">Home</a>
+        <h1>The Stadium Guide registration</h1>
+
+  
+    </header>
+
+    <div class="page-layout">
+        <div class="form-side">
+            <div class="container">
+                <h2>Sign Up</h2>
+
+                {% with messages = get_flashed_messages() %}
+                  {% if messages %}
+                    <div id="flash-messages">
+                      {% for message in messages %}
+                        <p>{{ message }}</p>
+                      {% endfor %}
+                    </div>
+                  {% endif %}
+                {% endwith %}
+            <form method="POST" action="/register" class="sign-up-form">
+            <div class="input-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required value="{{ request.form.username|default('', true) }}">
+            </div>
+
+            <div class="input-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required value="{{ request.form.email|default('', true) }}">
+            </div>
+
+            <div class="input-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+
+            <div class="input-group">
+                <label for="confirm_password">Confirm Password:</label>
+                <input type="password" id="confirm_password" name="confirm_password" required>
+            </div>
+
+            <input type="submit" value="Sign Up">
+        </form> 
+    </div>
+
+</body>
+</html>
