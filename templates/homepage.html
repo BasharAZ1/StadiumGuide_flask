@@ -34,7 +34,7 @@
                 <a href="/stadium/{{ stadium.id }}">
                     <img src="{{ stadium.stadiumImage }}" alt="{{ stadium.stadium_name }}">
                     <div class="rating">
-                        {% if stadium.stars_number is not none and stadium.stars_number > 0 %}
+                        {% if stadium.stars_number is not none and stadium.stars_number >= 0 %}
                             {% set full_stars = stadium.stars_number %}
                             
                             <!-- Display filled stars -->

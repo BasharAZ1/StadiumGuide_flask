@@ -22,7 +22,7 @@ build/
 develop-eggs/
 dist/
 downloads/
-eggs/
+eggs/fl
 .eggs/
 lib/
 lib64/
