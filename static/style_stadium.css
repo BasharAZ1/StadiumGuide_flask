@@ -1,12 +1,13 @@
 body {
-    background-color: #e0f2f1; /* Light green background */
+    background-color: rgba(200, 200, 200, 0.2); 
+    color: #333;
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
 }
 
 header {
-    background-color: #00695c; /* Darker green for the header */
+    background-color: darkgray ;/* Darker green for the header */
     color: white;
     text-align: center;
     padding: 1em 0;
@@ -51,5 +52,25 @@ header {
 textarea {
     height: 100px;
 }
+footer {
+    background-color: gray; /* Gray color */
+    text-align: center;
+    padding: 1em 0;
+}
 
+footer p {
+    margin: 0;
+}
+.home-link {
+    position: absolute;
+    text-decoration: none; /* Removes underline from link */
+    color: white; /* Sets the text color */
+    padding: 10px; /* Adds padding around the text */
+    margin-left: 10px; /* Adds space to the left */
+    right:10px;
+}
+
+.home-link:hover {
+    background-color: black; /* Changes color on hover */
+}
 

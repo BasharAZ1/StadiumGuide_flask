@@ -1,4 +1,4 @@
-/* Global Styles */
+
 body {
     font-family: Arial, sans-serif;
     background-color: rgba(200, 200, 200, 0.2); 
@@ -6,23 +6,39 @@ body {
     margin: 0;
     padding: 0;
 }
-
 header {
+    display: flex;
+    align-items: center;
+    padding: 1em 0;
+    justify-content: center; /* Adjusted for spacing */
     background-color: gray; /* Gray color for header */
 }
 
-/* User Action Styles */
+.user-actions {
+    position: absolute;
+    left: 10px;
+}
+
 .user-actions button {
-    background-color: grey; /* Grey color for buttons */
+    margin-right: 10px;
+    padding: 10px 15px;
+    border: none;
+    background-color: #007bff;
     color: white;
-    border-radius: 10px; /* Rounded corners for buttons */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .user-actions button:hover {
-    background-color: darkgrey; /* Dark grey on hover */
+    background-color: #0056b3;
 }
 
-/* Stadium Section Styling */
+.user-actions span {
+    color: black;
+    font-weight: bold;
+}
+
 #stadiums {
     display: flex;
     flex-wrap: wrap;
@@ -52,9 +68,9 @@ header {
     box-shadow: 0 8px 16px rgba(0,0,0,0.2); /* Optional: Enhances shadow on hover */
 }
 
-/* Add Stadium Button Styling */
+
 #add-stadium-button {
-    background-color: grey;
+    background-color: blue;
     color: white;
     border-radius: 10px;
     padding: 10px 20px;
@@ -63,10 +79,10 @@ header {
 }
 
 #add-stadium-button:hover {
-    background-color: darkgrey;
+    background-color: black;
 }
 
-/* Footer Styling */
+
 footer {
     background-color: gray; /* Gray color */
     text-align: center;
@@ -75,4 +91,88 @@ footer {
 
 footer p {
     margin: 0;
+}
+
+.delete-stadium-btn {
+    position: absolute;
+    top: 0;
+    right: 10px; /* Keep this at the very right */
+    padding: 5px 8px;
+    margin: 2px;
+    border: none;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    font-weight: bold;
+    z-index: 0; /* Ensure it's above the edit button if they overlap */
+}
+
+.delete-stadium-btn:hover {
+    background-color: darkred;
+}
+
+.edit-stadium-btn {
+    position: absolute;
+    top: 0;
+    right: 40px; 
+    cursor: pointer;
+    padding: 5px;
+    fill: yellow; 
+    z-index: 1; 
+}
+
+.edit-stadium-btn:hover {
+    fill: #0056b3; 
+}
+.rating {
+    display: flex;
+    align-items: left;
+    justify-content: left; 
+    gap: 5px; /* Spacing between stars */
+}
+
+.star {
+    width: 24px; 
+    height: 24px; 
+    background-size: cover;
+    display: inline-block; 
+}
+
+.filled {
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Gold_Star_%28with_border%29.svg/640px-Gold_Star_%28with_border%29.svg.png');
+}
+
+.empty {
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Empty_Star.svg/1200px-Empty_Star.svg.png');
+}
+
+.ratingRadio {
+    margin-left: 10px; 
+
+}
+
+.ratingRadio {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ff9500; /* Attractive orange color */
+    background-color: #ffffff;
+    border: 2px solid #ff9500; /* Matching border color */
+    border-radius: 15px;
+    padding: 5px 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease-in-out;
+}
+
+
+.ratingRadio:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+
+.ratingRadio:empty:before {
+    content: "NA/NA";
+    color: #777; 
+    border-color: #777; 
 }

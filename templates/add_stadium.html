@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Stadium</title>
-    <link rel="stylesheet" href="static/style_stadium.css">
+    <link rel="stylesheet" href="/static/style_stadium.css">
 </head>
 <body>
     <header>
+        <a href="/" class="home-link">Home</a>
         <h1>Add a New Stadium</h1>
     </header>
 
@@ -15,42 +16,42 @@
         <form method="post">
             <div class="form-group">
                 <label for="stadiumImage">Stadium Image URL:</label>
-                <input type="url" id="stadiumImage" name="stadiumImage" required>
+                <input type="url" id="stadiumImage" name="stadiumImage" value="{{ stadium_data.stadiumImage | default('') }}" required>
             </div>
 
             <div class="form-group">
                 <label for="stadiumName">Stadium Name:</label>
-                <input type="text" id="stadiumName" name="stadiumName" required>
+                <input type="text" id="stadiumName" name="stadiumName"  value="{{ stadium_data.stadium_name | default('') }}" required>
             </div>
 
             <div class="form-group">
                 <label for="location">Location:</label>
-                <input type="text" id="location" name="location" required>
+                <input type="text" id="location" name="location" value="{{ stadium_data.location | default('') }}" required>
             </div>
 
             <div class="form-group">
                 <label for="description">Description:</label>
-                <textarea id="description" name="description" required></textarea>
+                <textarea id="description" name="description"  required> {{ stadium_data.description | default('') }}</textarea>
             </div>
 
             <div class="form-group">
                 <label for="capacity">Capacity:</label>
-                <input type="number" id="capacity" name="capacity" required>
+                <input type="number" id="capacity" name="capacity" value="{{ stadium_data.capacity | default('') }}"  required>
             </div>
 
             <div class="form-group">
                 <label for="owner">Owner:</label>
-                <input type="text" id="owner" name="owner" required>
+                <input type="text" id="owner" name="owner" value="{{ stadium_data.owner | default('') }}" required>
             </div>
 
             <div class="form-group">
                 <label for="yearBuilt">Year Built:</label>
-                <input type="number" id="yearBuilt" name="yearBuilt" required>
+                <input type="number" id="yearBuilt" name="yearBuilt"  value="{{ stadium_data.yearBuilt | default('') }}" required>
             </div>
 
             <div class="form-group">
                 <label for="fieldSize">Field Size:</label>
-                <input type="text" id="fieldSize" name="fieldSize" required>
+                <input type="text" id="fieldSize" name="fieldSize"  value="{{ stadium_data.fieldSize | default('') }}"" required>
             </div>
 
             <div class="form-group">

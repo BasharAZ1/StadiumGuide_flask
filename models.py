@@ -1,17 +1,20 @@
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
-from extensions import db
+from flask_sqlalchemy import SQLAlchemy
+db = SQLAlchemy()
 
 class Stadium(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     stadium_name = db.Column(db.String(50), nullable=False)
     location = db.Column(db.String(100))
-    description = db.Column(db.String(255))  # Adjust the length as needed
+    description = db.Column(db.String(500)) 
     capacity = db.Column(db.Integer)
     owner = db.Column(db.String(50))  
     yearBuilt = db.Column(db.Integer)  
     fieldSize = db.Column(db.String(50))  
-    stadiumImage = db.Column(db.String(255))  
+    stadiumImage = db.Column(db.String(255))
+    rating = db.Column(db.Integer) 
+    stars_number = db.Column(db.Integer) 
 
 
 class User(db.Model):

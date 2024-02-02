@@ -4,8 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ stadium.stadium_name }}</title>
-    <link rel="stylesheet" href="../static/stad.css">
+    <link rel="stylesheet" href="../static/stadium_detail.css">
     <style>
+        #flash-messages {
+            position: fixed; /* Fixed position */
+            bottom: 20px;    /* 20px from the bottom */
+            right: 20px;     /* 20px from the right */
+            background-color: rgba(255, 0, 0, 0.7); /* Semi-transparent red background */
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 1000; /* Make sure it appears above other elements */
+        }
     
         .user-actions {
             display: flex;
@@ -81,6 +91,15 @@
     <main>
         <div class="stadium-details">
             <img src="{{ stadium.stadiumImage }}" alt="{{ stadium.stadium_name }}" class="stadium-image">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+              <div id="flash-messages">
+                {% for message in messages %}
+                  <p>{{ message }}</p>
+                {% endfor %}
+              </div>
+            {% endif %}
+          {% endwith %}
             
             <table>
                 <tr>
@@ -148,9 +167,10 @@
         
                     <input id="star1" name="rating" type="radio" value="1" class="star"/>
                     <label for="star1" title="1 star">☆</label>
+                    <input id="star0" name="rating" type="radio" value="0" class="star" style="display:none" checked/>
                 </div>
         
-                <textarea name="comment" placeholder="Write your review here..." required></textarea>
+                <textarea name="comment" placeholder="Write your review here..." ></textarea>
                 <br>
                 <div class="button-container">
                     <button type="submit">Submit Review</button>

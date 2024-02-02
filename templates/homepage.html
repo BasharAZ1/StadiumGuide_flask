@@ -6,39 +6,7 @@
     <title>The Stadium Guide</title>
     <link rel="stylesheet" href="static/style.css">
     <style>
-        header {
-            display: flex;
-            align-items: center;
-            padding: 1em 0;
-            justify-content: center /* Adjusted for spacing */
-        }
-        
-        .user-actions {
-            position: absolute;
-            left: 10px;
-        }
-        
-        .user-actions button {
-            margin-right: 10px;
-            padding: 10px 15px;
-            border: none;
-            background-color: #007bff;
-            color: white;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        
-        .user-actions button:hover {
-            background-color: #0056b3;
-        }
-        
-        .user-actions span {
-            color: black;
-            font-weight: bold;
-        }
 
-        
     </style>
 </head>
 <body>
@@ -52,6 +20,9 @@
                 <span id="user-name">{{ session.username }}</span>
                 <button onclick="window.location.href='/logout';">Log out</button>
             {% endif %}
+            {% if is_admin %}
+            <button id="add-stadium-button" onclick="window.location.href='add_stadium.html';">Add Stadium to Database</button>
+            {% endif %}
         </div>
         <h1>The Stadium Guide</h1>
     </header>
@@ -62,14 +33,35 @@
             <div class="stadium">
                 <a href="/stadium/{{ stadium.id }}">
                     <img src="{{ stadium.stadiumImage }}" alt="{{ stadium.stadium_name }}">
+                    <div class="rating">
+                        {% if stadium.stars_number is not none and stadium.stars_number > 0 %}
+                            {% set full_stars = stadium.stars_number %}
+                            
+                            <!-- Display filled stars -->
+                            {% for _ in range(full_stars) %}
+                                <div class="star filled"></div>
+                            {% endfor %}
+                            
+                            <!-- Display empty stars -->
+                            {% for _ in range(5 - full_stars) %}
+                                <div class="star empty"></div>
+                            {% endfor %}
+                            
+                            <span class="ratingRadio">{{stadium.rating}}/5</span>
+                        {% else %}
+                            <span class="ratingRadio">NA/NA</span>
+                        {% endif %}
+                    </div>
                 </a>
                 <h3>{{ stadium.stadium_name }}</h3>
+                {% if is_admin %}
+                <svg onclick="window.location.href='/edit_stadium/{{ stadium.id }}';" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="edit-stadium-btn"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L12 14l-4 1 1-4 7.5-7.5z"></path></svg>
+                <button class="delete-stadium-btn"  onclick="if(confirm('Are you sure you want to delete this stadium?')) window.location.href='/delete_stadium/{{ stadium.id }}';">X</button>
+                {% endif %}
             </div>
             {% endfor %}
         </section>
-        {% if is_admin %}
-        <button id="add-stadium-button" onclick="window.location.href='add_stadium.html';">Add Stadium to Database</button>
-        {% endif %}
+
     </main>
 </div>
 
