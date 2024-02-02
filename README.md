@@ -34,6 +34,7 @@ https://github.com/BasharAZ1/StadiumGuide_flask
   .\env\Scripts\activate
   ```
 - On Unix or MacOS:
+- python3 -m venv env
   ```
   source env/bin/activate
   ```
