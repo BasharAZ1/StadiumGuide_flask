@@ -31,11 +31,13 @@ https://github.com/BasharAZ1/StadiumGuide_flask
 3.Activate the virtual environment:
 - On Windows:
   ```
+   python3 -m venv env
   .\env\Scripts\activate
   ```
 - On Unix or MacOS:
-- python3 -m venv env
+
   ```
+  python3 -m venv env
   source env/bin/activate
   ```
 4.Install the required dependencies:
