@@ -16,7 +16,14 @@ def check_password(self, password):
         return check_password_hash(self.password_hash, password)
     
     
-    
+def is_password_legal(password):
+    if len(password) < 8:
+        return False
+    special_characters = "!@#&%()"
+    if not any(char in special_characters for char in password):
+        return False
+
+    return True 
     
     
 def register():
@@ -28,6 +35,9 @@ def register():
 
         if password != confirm_password:
             flash("Passwords do not match!")
+            return render_template('signup.html', username=username, email=email)
+        if not is_password_legal(password):
+            flash("Password must be at least 8 characters long and include at least one of the following special characters: !@#&%")
             return render_template('signup.html', username=username, email=email)
 
         new_user = User(username=username, email=email)
