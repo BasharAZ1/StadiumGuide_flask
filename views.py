@@ -10,7 +10,7 @@ def homepage(is_logged_in=False,is_admin=False):
     username = session.get('username', 'Guest')
     is_logged_in=session.get('is_logged_in', False)
     user = User.query.filter_by(username=username).first()
-    return render_template("homepage.html", stadiums=stadiums,username=username,is_logged_in=is_logged_in,is_admin=user.is_admin)
+    return render_template("index.html", stadiums=stadiums,username=username,is_logged_in=is_logged_in,is_admin=user.is_admin)
 
 def add_stadium(id=None):
     if request.method=="GET":

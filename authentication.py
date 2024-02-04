@@ -46,7 +46,7 @@ def register():
         try:
             db.session.add(new_user)
             db.session.commit()
-            return redirect(url_for('homepage'))  # Redirect to homepage or appropriate route
+            return redirect(url_for('homepage'))  
         except IntegrityError:
             db.session.rollback()
             flash('This username or email is already taken. Please choose a different one.')
